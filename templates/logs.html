@@ -1,0 +1,345 @@
+<html class="dark"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDN Gaming QoE - Full System Logs</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          "colors": {
+            "on-tertiary-fixed-variant": "#004e5b",
+            "secondary": "#ffb95f",
+            "on-surface-variant": "#d8c3b4",
+            "background": "#151311",
+            "surface-container-lowest": "#100e0c",
+            "surface": "#151311",
+            "tertiary": "#74d4ea",
+            "on-primary": "#532200",
+            "on-secondary": "#472a00",
+            "on-tertiary-fixed": "#001f26",
+            "on-primary-container": "#491d00",
+            "primary": "#ffb68d",
+            "surface-container": "#211f1d",
+            "surface-variant": "#373432",
+            "on-error": "#690005",
+            "on-tertiary-container": "#002f37",
+            "surface-container-high": "#2c2927",
+            "primary-container": "#c97f53",
+            "inverse-on-surface": "#33302d",
+            "inverse-surface": "#e8e1dd",
+            "surface-container-highest": "#373432",
+            "tertiary-container": "#359db2",
+            "tertiary-fixed": "#a8edff",
+            "inverse-primary": "#8d4e26",
+            "on-background": "#e8e1dd",
+            "secondary-container": "#ee9800",
+            "surface-container-low": "#1d1b19",
+            "on-secondary-fixed-variant": "#653e00",
+            "error": "#ffb4ab",
+            "error-container": "#93000a",
+            "surface-tint": "#ffb68d",
+            "outline": "#a08d80",
+            "on-primary-fixed": "#331200",
+            "outline-variant": "#524439",
+            "secondary-fixed-dim": "#ffb95f",
+            "primary-fixed-dim": "#ffb68d",
+            "on-secondary-fixed": "#2a1700",
+            "secondary-fixed": "#ffddb8",
+            "on-primary-fixed-variant": "#703711",
+            "on-secondary-container": "#5b3800",
+            "surface-bright": "#3c3936",
+            "on-error-container": "#ffdad6",
+            "on-surface": "#e8e1dd",
+            "tertiary-fixed-dim": "#74d4ea",
+            "surface-dim": "#151311",
+            "on-tertiary": "#00363f",
+            "primary-fixed": "#ffdbc9"
+          },
+          "borderRadius": {
+            "DEFAULT": "1rem",
+            "lg": "2rem",
+            "xl": "3rem",
+            "full": "9999px"
+          },
+          "fontFamily": {
+            "headline": ["Plus Jakarta Sans"],
+            "body": ["Plus Jakarta Sans"],
+            "label": ["Plus Jakarta Sans"],
+            "mono": ["JetBrains Mono"]
+          }
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      background-color: #151311;
+      color: #e8e1dd;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .terminal-scrollbar::-webkit-scrollbar {
+      width: 4px;
+    }
+    .terminal-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    .terminal-scrollbar::-webkit-scrollbar-thumb {
+      background: #373432;
+      border-radius: 10px;
+    }
+    .glass-panel {
+      background: radial-gradient(circle at top left, rgba(44, 41, 39, 0.4), rgba(21, 19, 17, 0.1));
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(160, 141, 128, 0.1);
+    }
+    .log-line {
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body class="bg-background text-on-surface min-h-screen selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col p-8 z-40 bg-[#1d1b19]/60 backdrop-blur-2xl rounded-r-[3rem] my-8 shadow-2xl shadow-[#100e0c]/40 hidden lg:flex">
+<div class="mb-12">
+<a href="/" class="block hover:opacity-80 transition-opacity">
+<p class="text-[10px] uppercase tracking-[0.05em] text-[#d8c3b4] font-['Plus_Jakarta_Sans']">System Node</p>
+<h2 class="text-[#ffb68d] font-bold text-lg">Nocturnal Curator</h2>
+</a>
+<p class="text-[10px] uppercase tracking-[0.05em] text-[#d8c3b4] font-['Plus_Jakarta_Sans']">Network Intelligence</p>
+</div>
+<nav class="flex-1 flex flex-col gap-6 font-['Plus_Jakarta_Sans'] uppercase tracking-[0.05em] text-[10px]">
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:bg-[#2c2927] hover:text-[#ffb95f] rounded-full p-2 transition-all duration-500 ease-in-out" href="/research">
+<span class="material-symbols-outlined">science</span>
+<span>Research Hub</span>
+</a>
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:bg-[#2c2927] hover:text-[#ffb95f] rounded-full p-2 transition-all duration-500 ease-in-out" href="/matrix">
+<span class="material-symbols-outlined">grid_view</span>
+<span>Scenario Matrix</span>
+</a>
+<a class="flex items-center gap-4 text-[#ffb68d] border-r-4 border-[#ffb68d] pr-4 transition-all duration-500 ease-in-out" href="/logs">
+<span class="material-symbols-outlined">terminal</span>
+<span>Live Logs</span>
+</a>
+</nav>
+<!-- Sidebar Health Widget (Refined for Consistency) -->
+<div class="mb-8 p-4 rounded-2xl bg-surface-container-low border border-outline-variant/10">
+<div class="flex items-center justify-between mb-2">
+<span class="text-[8px] font-bold uppercase tracking-[0.15em] text-on-surface-variant">Core Health</span>
+<span class="text-[8px] font-mono text-primary font-bold">99%</span>
+</div>
+<div class="h-1 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[99%] shadow-[0_0_8px_rgba(255,182,141,0.4)]"></div>
+</div>
+</div>
+<div class="mt-auto flex flex-col gap-4 font-['Plus_Jakarta_Sans'] uppercase tracking-[0.05em] text-[10px]">
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:text-[#ffb95f] transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:text-[#ffb95f] transition-colors" href="#">
+<span class="material-symbols-outlined">description</span>
+<span>Documentation</span>
+</a>
+</div>
+</aside>
+<!-- Main Content -->
+<main class="lg:ml-64 min-h-screen bg-surface flex flex-col">
+<!-- Header -->
+<header class="flex justify-between items-center w-full px-12 py-6 sticky top-0 z-40" style="background-color: #151311; box-shadow: 0 4px 20px rgba(16,14,12,0.6); border-bottom: 1px solid rgba(82,68,57,0.2);">
+<div class="flex flex-col">
+<h2 class="text-xl font-bold text-[#e8e1dd] tracking-tight">Full System Logs</h2>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-[0.2em] text-primary opacity-80">Stream // Live-Data-Feed</span>
+</div>
+<div class="flex items-center gap-6">
+<div class="flex items-center gap-2 bg-surface-container-low px-4 py-2 rounded-full border border-outline-variant/10">
+<input class="bg-transparent border-none focus:ring-0 text-[10px] font-bold uppercase text-on-surface-variant placeholder:text-on-surface-variant/50 w-32" placeholder="Search Logs" type="text"/>
+<span class="material-symbols-outlined text-on-surface-variant text-sm">search</span>
+</div>
+<div class="flex items-center gap-4 text-[#ffb68d]">
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors">schedule</span>
+<span class="material-symbols-outlined cursor-pointer hover:text-secondary transition-colors">notifications</span>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-outline-variant/20">
+<img alt="User profile" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCALSxIhPG38jYL9u31xKCybCbUphZn151KWMZCAsKA8kikmRTEUt-nBsYH3EoxI3GVV8kKM58e_Nw7jApLrmUHEMWgen0rOksQUpeqPxY5xtJD0uGn_hcsQ4iSSKmxtWL2nJpQe6_8BsvYU-dIkWod5wwcM0SNiyoTiSPu9J8WeMwBSrmhPPWCU6d7oOw-hajnVnt5cKyNfq-NBiEn8nPxgwOGu1KesF6Kb84DYmaTTmPNYncuxUjSFTO_8giWG0NXdEWFJaTpyEA"/>
+</div>
+</div>
+</div>
+</header>
+<!-- Content Canvas -->
+<div class="px-12 pb-12 flex-1 flex flex-col gap-8 max-w-7xl">
+<!-- Filter Bar -->
+<section class="flex items-center justify-between">
+<div class="flex gap-2">
+<button class="px-6 py-2.5 rounded-full bg-primary text-on-primary text-[10px] font-bold uppercase tracking-[0.1em] transition-all hover:brightness-110 shadow-lg shadow-primary/20">All Logs</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-highest/50 text-on-surface-variant text-[10px] font-bold uppercase tracking-[0.1em] transition-all hover:bg-surface-bright border border-outline-variant/10">Info</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-highest/50 text-secondary text-[10px] font-bold uppercase tracking-[0.1em] transition-all hover:bg-surface-bright border border-outline-variant/10">Warn</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-highest/50 text-error text-[10px] font-bold uppercase tracking-[0.1em] transition-all hover:bg-surface-bright border border-outline-variant/10">Crit</button>
+<button class="px-6 py-2.5 rounded-full bg-surface-container-highest/50 text-tertiary text-[10px] font-bold uppercase tracking-[0.1em] transition-all hover:bg-surface-bright border border-outline-variant/10">Sync</button>
+</div>
+<div class="flex items-center gap-4">
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-surface-container-low border border-outline-variant/10 text-[10px] font-mono text-on-surface-variant">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse"></span>
+            LIVE FEED ACTIVE
+          </div>
+<button class="p-2 rounded-full bg-surface-container-low text-on-surface-variant hover:text-primary transition-colors border border-outline-variant/10">
+<span class="material-symbols-outlined">download</span>
+</button>
+</div>
+</section>
+<!-- Terminal Area -->
+<section class="flex-1 flex flex-col rounded-3xl glass-panel overflow-hidden shadow-2xl relative group min-h-[500px]">
+<div class="absolute -inset-0.5 bg-gradient-to-b from-primary/10 to-transparent rounded-3xl blur opacity-20 pointer-events-none"></div>
+<!-- Terminal Header -->
+<div class="bg-surface-container-low/40 px-8 py-4 flex items-center justify-between border-b border-outline-variant/5 backdrop-blur-md">
+<div class="flex gap-2">
+<div class="w-3 h-3 rounded-full bg-error/40 border border-error/20"></div>
+<div class="w-3 h-3 rounded-full bg-secondary/40 border border-secondary/20"></div>
+<div class="w-3 h-3 rounded-full bg-tertiary/40 border border-tertiary/20"></div>
+</div>
+<span class="font-mono text-[10px] text-on-surface-variant/70 tracking-[0.2em] uppercase">Session: QOE-992-KOREA-SOUTH</span>
+<div class="w-12"></div>
+</div>
+<!-- Scrollable Log Entries -->
+<div class="flex-1 overflow-y-auto terminal-scrollbar p-8 space-y-3 font-mono text-[13px] selection:bg-primary/40 selection:text-white" id="live-logs-container">
+<!-- Logs injected by JS -->
+</div>
+<!-- Terminal Footer -->
+<div class="bg-surface-container-low/40 px-8 py-4 flex items-center justify-between backdrop-blur-md border-t border-outline-variant/5">
+<div class="flex items-center gap-10 text-[9px] font-bold uppercase tracking-[0.2em] text-on-surface-variant/50">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+              BUFFER: 1.2MB
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+              OVERFLOW: 0.0%
+            </div>
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary/40"></span>
+              CPU: 4%
+            </div>
+</div>
+<div class="flex items-center gap-2">
+<span class="text-[9px] font-mono text-on-surface-variant/50 tracking-widest uppercase">UTF-8 // SHELL: BASH</span>
+</div>
+</div>
+</section>
+<!-- Bottom HUD Status -->
+<section class="grid grid-cols-4 gap-6">
+<div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 flex flex-col gap-3 group hover:border-primary/30 transition-all duration-700">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Avg. Ping</span>
+<span class="material-symbols-outlined text-on-surface-variant/50 text-sm">timer</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-primary" id="logs-avg-ping">12ms</span>
+<span class="text-[10px] text-tertiary font-bold mb-1.5">▲</span>
+</div>
+<div class="h-0.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-primary w-[30%] shadow-[0_0_10px_rgba(255,182,141,0.5)]"></div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 flex flex-col gap-3 group hover:border-primary/30 transition-all duration-700">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Active Streams</span>
+<span class="material-symbols-outlined text-on-surface-variant/50 text-sm">analytics</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-on-surface" id="logs-active-streams">1,402</span>
+<span class="text-[10px] text-secondary font-bold mb-1.5 uppercase">Live</span>
+</div>
+<div class="h-0.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-[65%] shadow-[0_0_10px_rgba(255,185,95,0.3)]"></div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-2xl border border-outline-variant/10 flex flex-col gap-3 group hover:border-primary/30 transition-all duration-700">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-surface-variant">Threat Level</span>
+<span class="material-symbols-outlined text-on-surface-variant/50 text-sm">security</span>
+</div>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-secondary" id="logs-threat-level">LOW</span>
+<span class="text-[10px] text-on-surface-variant/60 font-bold mb-1.5">STABLE</span>
+</div>
+<div class="h-0.5 w-full bg-surface-container-highest rounded-full overflow-hidden">
+<div class="h-full bg-secondary w-1/4"></div>
+</div>
+</div>
+<div class="glass-panel p-6 rounded-2xl border border-primary/20 bg-primary/5 flex flex-col justify-center gap-2 group">
+<div class="flex items-center justify-between">
+<span class="text-[10px] font-bold uppercase tracking-widest text-primary">System Health</span>
+<span class="text-[10px] font-mono font-bold text-primary">99%</span>
+</div>
+<div class="w-full bg-surface-container-highest h-1 rounded-full overflow-hidden mt-1">
+<div class="bg-primary h-full w-[99%] shadow-[0_0_15px_rgba(255,182,141,0.6)]"></div>
+</div>
+</div>
+</section>
+</div>
+</main>
+<!-- Floating HUD removed: 'SYNCED_TO_ORBITAL_01' was a non-functional Stitch placeholder -->
+<!-- Background Decorative Elements -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-primary/5 blur-[150px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[700px] h-[700px] bg-secondary/3 blur-[150px] rounded-full"></div>
+</div>
+<script>
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '/api' : 'http://192.168.64.3:5000/api';
+    
+    const logTemplate = `
+    <div class="flex gap-6 group/item hover:bg-white/5 p-2 rounded-xl transition-all log-line">
+        <span class="text-on-surface-variant/30 shrink-0 tabular-nums">LIVE</span>
+        <span class="text-on-surface-variant font-mono text-xs">\${TEXT}</span>
+    </div>`;
+
+    async function tick() {
+        try {
+            const resStatus = await fetch(API_BASE + '/status').then(r => r.json());
+            const resResults = await fetch(API_BASE + '/results').then(r => r.json());
+
+            // Render logs
+            const logsContainer = document.getElementById('live-logs-container');
+            logsContainer.innerHTML = resStatus.log_lines.map(line => 
+                logTemplate.replace('${TEXT}', line.replace(/</g, '&lt;'))
+            ).join('');
+            logsContainer.scrollTop = logsContainer.scrollHeight;
+
+            if (document.getElementById('logs-active-streams')) {
+                document.getElementById('logs-active-streams').innerText = (resStatus.active_nodes * 98 + Math.floor(Math.random() * 50)).toLocaleString();
+            }
+            if (document.getElementById('logs-threat-level')) {
+                document.getElementById('logs-threat-level').innerText = resStatus.threat_level;
+                if (resStatus.threat_level === 'ELEVATED') {
+                    document.getElementById('logs-threat-level').className = "text-3xl font-bold text-error";
+                } else {
+                    document.getElementById('logs-threat-level').className = "text-3xl font-bold text-secondary";
+                }
+            }
+            if (document.getElementById('logs-avg-ping')) {
+                // Calculate average ping dynamically from results
+                let sumPing = 0;
+                let countPing = 0;
+                resResults.forEach(r => {
+                    if (r.has_data && r.data.avg_rtt) {
+                        sumPing += r.data.avg_rtt;
+                        countPing++;
+                    }
+                });
+                if (countPing > 0) {
+                    document.getElementById('logs-avg-ping').innerText = (sumPing / countPing).toFixed(1) + 'ms';
+                }
+            }
+
+        } catch (err) {
+            console.error('Failed to fetch', err);
+        }
+    }
+    setInterval(tick, 2000);
+    tick();
+</script>
+</body></html>

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SDN Gaming QoE - Research Documentation</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "secondary-fixed": "#ffddb8",
+                        "surface-container-high": "#2c2927",
+                        "on-primary-fixed-variant": "#703711",
+                        "on-surface-variant": "#d8c3b4",
+                        "surface-container-lowest": "#100e0c",
+                        "secondary": "#ffb95f",
+                        "on-primary-container": "#491d00",
+                        "on-tertiary": "#00363f",
+                        "tertiary-container": "#359db2",
+                        "on-surface": "#e8e1dd",
+                        "primary-container": "#c97f53",
+                        "primary-fixed-dim": "#ffb68d",
+                        "surface-tint": "#ffb68d",
+                        "inverse-surface": "#e8e1dd",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#8d4e26",
+                        "surface-dim": "#151311",
+                        "surface-container": "#211f1d",
+                        "surface": "#151311",
+                        "on-primary-fixed": "#331200",
+                        "on-secondary": "#472a00",
+                        "surface-container-highest": "#373432",
+                        "on-error": "#690005",
+                        "tertiary-fixed": "#a8edff",
+                        "on-tertiary-fixed": "#001f26",
+                        "outline": "#a08d80",
+                        "on-primary": "#532200",
+                        "on-background": "#e8e1dd",
+                        "surface-container-low": "#1d1b19",
+                        "on-secondary-fixed-variant": "#653e00",
+                        "surface-variant": "#373432",
+                        "primary-fixed": "#ffdbc9",
+                        "inverse-on-surface": "#33302d",
+                        "error": "#ffb4ab",
+                        "tertiary": "#74d4ea",
+                        "secondary-fixed-dim": "#ffb95f",
+                        "on-tertiary-fixed-variant": "#004e5b",
+                        "on-error-container": "#ffdad6",
+                        "background": "#151311",
+                        "surface-bright": "#3c3936",
+                        "on-secondary-fixed": "#2a1700",
+                        "outline-variant": "#524439",
+                        "on-tertiary-container": "#002f37",
+                        "on-secondary-container": "#5b3800",
+                        "secondary-container": "#ee9800",
+                        "primary": "#ffb68d",
+                        "tertiary-fixed-dim": "#74d4ea"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "1rem",
+                        "lg": "2rem",
+                        "xl": "3rem",
+                        "full": "9999px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Plus Jakarta Sans"],
+                        "label": ["Plus Jakarta Sans"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glow-copper {
+            text-shadow: 0 0 20px rgba(255, 182, 141, 0.3);
+        }
+        .organic-island {
+            background: radial-gradient(circle at top left, rgba(44, 41, 39, 0.4), rgba(21, 19, 17, 0.1));
+        }
+        .text-step-sm { font-size: 0.75rem; letter-spacing: 0.15em; font-weight: 700; text-transform: uppercase; }
+        .text-step-xs { font-size: 10px; letter-spacing: 0.2em; font-weight: 700; text-transform: uppercase; }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col p-8 z-40 bg-[#1d1b19]/60 backdrop-blur-2xl rounded-r-[3rem] my-8 left-0 shadow-2xl shadow-[#100e0c]/40 hidden lg:flex">
+<div class="mb-12">
+<a href="/" class="block hover:opacity-80 transition-opacity">
+<p class="text-[10px] uppercase tracking-[0.05em] text-[#d8c3b4] font-['Plus_Jakarta_Sans']">System Node</p>
+<h2 class="text-[#ffb68d] font-bold text-lg">Nocturnal Curator</h2>
+</a>
+<p class="text-[10px] uppercase tracking-[0.05em] text-[#d8c3b4] font-['Plus_Jakarta_Sans']">Network Intelligence</p>
+</div>
+<nav class="flex-1 flex flex-col gap-6 font-['Plus_Jakarta_Sans'] uppercase tracking-[0.05em] text-[10px]">
+<a class="flex items-center gap-4 text-[#ffb68d] border-r-4 border-[#ffb68d] pr-4 transition-all duration-500 ease-in-out" href="/research">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span>Research Hub</span>
+</a>
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:bg-[#2c2927] hover:text-[#ffb95f] rounded-full p-2 transition-all duration-500 ease-in-out" href="/matrix">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span>Scenario Matrix</span>
+</a>
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:bg-[#2c2927] hover:text-[#ffb95f] rounded-full p-2 transition-all duration-500 ease-in-out" href="/logs">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span>Live Logs</span>
+</a>
+</nav>
+<div class="mt-auto flex flex-col gap-4 font-['Plus_Jakarta_Sans'] uppercase tracking-[0.05em] text-[10px]">
+<a class="flex items-center gap-4 text-[#d8c3b4] pr-4 hover:text-[#ffb95f] transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-4 text-[#ffb68d] border-r-4 border-[#ffb68d] pr-4 transition-all duration-500 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span>Documentation</span>
+</a>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="lg:ml-64 min-h-screen">
+<!-- TopNavBar -->
+<nav class="flex justify-between items-center h-16 w-[calc(100%-3rem)] sticky top-4 z-50 rounded-full mt-4 mx-6 px-6 border border-[#524439]/20" style="background-color: #151311; box-shadow: 0 20px 50px rgba(16,14,12,0.8);">
+<div class="flex items-center gap-4">
+<span class="text-xl font-bold text-[#ffb68d] tracking-widest uppercase font-['Plus_Jakarta_Sans']">SDN Gaming QoE</span>
+<span class="w-px h-4 bg-outline-variant/30"></span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-[0.1em] text-[#d8c3b4]">Research Documentation</span>
+</div>
+<div class="hidden xl:flex items-center gap-8 font-['Plus_Jakarta_Sans'] tracking-tight">
+<a class="text-[#d8c3b4] hover:text-[#ffb95f] transition-colors duration-300" href="/">Live Dashboard</a>
+<a class="text-[#d8c3b4] hover:text-[#ffb95f] transition-colors duration-300" href="/matrix">Scenario Matrix</a>
+<a class="text-[#d8c3b4] hover:text-[#ffb95f] transition-colors duration-300" href="/logs">System Logs</a>
+</div>
+<div class="flex items-center gap-4 text-[#ffb68d]">
+<span class="material-symbols-outlined hover:text-[#ffb95f] transition-colors cursor-pointer" data-icon="schedule">schedule</span>
+<div class="relative">
+<span class="material-symbols-outlined hover:text-[#ffb95f] transition-colors cursor-pointer" data-icon="notifications">notifications</span>
+<span class="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full"></span>
+</div>
+<div class="w-8 h-8 rounded-full overflow-hidden ml-2 border border-outline-variant/20">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="close-up portrait of a technology system administrator with focused expression, soft studio lighting on dark background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCpZb2AakfOORRa5LW0sc964iQp7iuGrjQgrVYGqHCX_cTtopFTAhqNEM4FE-u8bNE0ztzycZZAGWAmMwAuIBHXlIuQa05AIaZ58H4J3FCDl0tKuMMcFG0NNeFZrlMOHdc9PraYMZN86SZtSgpgyuZtYqn0ME4hm203z8k-b_6m8qUSHRcvoceklldAMrd8G0vXTXMFA4iyyYObzAC8xIvv0miWKyS3D11Pj5lKUYx7e_vPUhZLN7REec36FrQbmhbZbwwALKsGm7c"/>
+</div>
+</div>
+</nav>
+<div class="px-12 py-12 max-w-7xl mx-auto">
+<!-- Editorial Hero -->
+<section class="mb-24">
+<div class="flex flex-col md:flex-row gap-12 items-end">
+<div class="flex-1">
+<span class="inline-block px-4 py-1 rounded-full bg-primary/10 text-primary text-[10px] font-bold uppercase tracking-widest mb-6">Peer Reviewed Journal</span>
+<h2 class="text-6xl font-extrabold tracking-tight leading-[1.1] mb-8 text-on-surface">
+                        Quality of Experience Evaluation of <span class="text-primary glow-copper">SDN-Based</span> Anomaly Detection on Real-Time Gaming Traffic
+                    </h2>
+<div class="flex gap-12 text-sm">
+<div>
+<p class="text-on-surface-variant uppercase tracking-widest text-[10px] mb-1 font-bold">Lead Researcher</p>
+<p class="font-bold text-lg">Dr. Aris V. Klonis</p>
+</div>
+<div>
+<p class="text-on-surface-variant uppercase tracking-widest text-[10px] mb-1 font-bold">Published</p>
+<p class="font-bold text-lg">Nov 2023</p>
+</div>
+<div>
+<p class="text-on-surface-variant uppercase tracking-widest text-[10px] mb-1 font-bold">Network Protocol</p>
+<p class="font-bold text-lg">SDN / OpenFlow</p>
+</div>
+</div>
+</div>
+<div class="w-full md:w-1/3">
+<div class="aspect-[4/5] rounded-xl overflow-hidden bg-surface-container-low shadow-2xl relative group">
+<img class="w-full h-full object-cover opacity-60 group-hover:scale-105 transition-transform duration-700" data-alt="Abstract digital visualization of network nodes and flowing data lines in copper and deep amber tones on a black background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAJy2zCiKm_zKh3n9ooT9YjM7HV5xF3LapxKS2BpWDW6qTkmPE-ykTalBVoEMRV74C3ed549iAnPBwQTTfv5FdPrGjjy8nVlDx2Ax44HS7hZjNAkNQu_gmU36KNRMFn5hv-OeiXqWVSVr9CTTMOOOOLrPxE2-5NghAdHgSoi232mfJRJKuumlJ-6GJJV6S9TkofGuRFyh64W-jaDQzFT_buZO44ghSLHIjv7KhK6EVnZbJB8OrrAWFOE5zdO9y2sr_K-l9ySJ5fCIU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-surface to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<p class="text-xs text-primary font-bold uppercase tracking-[0.2em] mb-2">Technical Abstract</p>
+<p class="text-sm leading-relaxed text-on-surface-variant">Exploring the intersection of packet-level anomalies and perceived user satisfaction in competitive cloud gaming environments.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Grid Layout for Content -->
+<div class="grid grid-cols-12 gap-16">
+<!-- Main Body -->
+<div class="col-span-12 lg:col-span-8 space-y-24">
+<!-- Abstract -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<h3 class="text-3xl font-bold tracking-tight">Abstract</h3>
+<div class="flex-1 h-px bg-gradient-to-r from-outline-variant/30 to-transparent"></div>
+</div>
+<p class="text-xl leading-relaxed text-on-surface-variant font-light mb-6">
+                        Software-Defined Networking (SDN) provides a dynamic platform for managing real-time traffic. However, detecting anomalies that specifically impact <span class="text-on-surface font-medium italic">Quality of Experience (QoE)</span> remains a challenge. This paper presents a novel framework that correlates network performance metrics directly with the ITU-T E-model for gaming.
+                    </p>
+<p class="text-xl leading-relaxed text-on-surface-variant font-light">
+                        We analyze how jitter, packet loss, and latency fluctuations during DDoS and flood attacks degrade the R-score of modern competitive titles. Our proposed detection model operates at the controller level, utilizing sFlow telemetry to preemptively reroute traffic before the user perceives a drop in responsiveness.
+                    </p>
+</section>
+<!-- Proposed Model Architecture -->
+<section>
+<div class="flex items-center gap-4 mb-10">
+<h3 class="text-3xl font-bold tracking-tight">Proposed Model Architecture</h3>
+<div class="flex-1 h-px bg-gradient-to-r from-outline-variant/30 to-transparent"></div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-12 relative overflow-hidden group border border-outline-variant/5">
+<div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: radial-gradient(#ffb68d 1px, transparent 1px); background-size: 24px 24px;"></div>
+<div class="relative flex flex-col md:flex-row items-stretch justify-center gap-6 md:gap-12">
+<!-- Data Plane Card -->
+<div class="w-full md:w-56 organic-island p-8 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center gap-4 group-hover:border-primary/30 transition-all duration-700">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-primary shadow-inner">
+<span class="material-symbols-outlined scale-125" data-icon="router">router</span>
+</div>
+<span class="text-step-xs text-center text-on-surface">Data Plane</span>
+</div>
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant opacity-30 rotate-90 md:rotate-0" data-icon="trending_flat">trending_flat</span>
+</div>
+<!-- Controller Logic Main Card -->
+<div class="flex-1 organic-island p-8 rounded-xl border border-outline-variant/10 text-center group-hover:border-secondary/30 transition-all duration-700 flex flex-col justify-center">
+<p class="text-step-xs text-secondary mb-8">SDN Controller Logic</p>
+<div class="grid grid-cols-2 gap-4">
+<div class="p-6 bg-surface-container rounded-lg border border-outline-variant/10 flex items-center justify-center">
+<p class="text-[9px] md:text-[10px] font-bold text-on-surface uppercase tracking-widest">Packet Analysis</p>
+</div>
+<div class="p-6 bg-surface-container rounded-lg border border-outline-variant/10 flex items-center justify-center">
+<p class="text-[9px] md:text-[10px] font-bold text-on-surface uppercase tracking-widest">QoE Estimation</p>
+</div>
+</div>
+</div>
+<div class="flex items-center justify-center">
+<span class="material-symbols-outlined text-outline-variant opacity-30 rotate-90 md:rotate-0" data-icon="trending_flat">trending_flat</span>
+</div>
+<!-- User QoE Card -->
+<div class="w-full md:w-56 organic-island p-8 rounded-xl border border-outline-variant/10 flex flex-col items-center justify-center gap-4 group-hover:border-tertiary/30 transition-all duration-700">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center text-tertiary shadow-inner">
+<span class="material-symbols-outlined scale-125" data-icon="sports_esports">sports_esports</span>
+</div>
+<span class="text-step-xs text-center text-on-surface">User QoE</span>
+</div>
+</div>
+<div class="mt-12 text-center">
+<p class="text-[10px] text-on-surface-variant font-medium tracking-wide uppercase opacity-60">Figure 1.1: Closed-loop feedback system for SDN-based gaming optimization.</p>
+</div>
+</div>
+</section>
+<!-- ITU-T E-model Equations -->
+<section>
+<div class="flex items-center gap-4 mb-8">
+<h3 class="text-3xl font-bold tracking-tight">ITU-T E-model Equations</h3>
+<div class="flex-1 h-px bg-gradient-to-r from-outline-variant/30 to-transparent"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<div class="bg-surface-container-low p-10 rounded-xl border border-outline-variant/10 shadow-xl transition-all hover:bg-surface-container duration-500">
+<p class="text-step-xs text-primary mb-6">The R-Score</p>
+<div class="text-3xl font-light text-on-surface tracking-widest mb-6">
+                                R = R<sub>o</sub> - I<sub>s</sub> - I<sub>d</sub> - I<sub>e,eff</sub> + A
+                            </div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                                Where <span class="text-on-surface">Ro</span> represents basic signal-to-noise ratio, <span class="text-on-surface">Id</span> accounts for delay impairment, and <span class="text-on-surface">Ie,eff</span> captures effective equipment impairment.
+                            </p>
+</div>
+<div class="bg-surface-container-low p-10 rounded-xl border border-outline-variant/10 shadow-xl transition-all hover:bg-surface-container duration-500">
+<p class="text-step-xs text-secondary mb-6">MOS Correlation</p>
+<div class="text-3xl font-light text-on-surface tracking-widest mb-6">
+                                MOS = 1 + 0.035R + ...
+                            </div>
+<p class="text-sm text-on-surface-variant leading-relaxed">
+                                Mapping technical network R-scores to the Mean Opinion Score (1-5) used in human psychological perception studies.
+                            </p>
+</div>
+</div>
+</section>
+</div>
+<!-- Sidebar Metadata -->
+<aside class="col-span-12 lg:col-span-4">
+<div class="sticky top-32 space-y-8">
+<!-- Key Findings -->
+<div class="p-8 bg-surface-container-low rounded-xl shadow-2xl border border-outline-variant/10 transition-all hover:border-primary/20 duration-500">
+<h4 class="text-step-xs text-primary mb-8">Key Findings</h4>
+<ul class="space-y-4">
+<li class="group flex gap-4 p-5 rounded-lg bg-surface-container hover:bg-surface-container-highest transition-all duration-300 border border-transparent hover:border-outline-variant/10">
+<span class="text-2xl font-black text-outline-variant/20 group-hover:text-primary/40 transition-colors">01</span>
+<div>
+<p class="font-bold text-sm mb-1 text-on-surface">Latency Sensitivity</p>
+<p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Network jitter over 20ms causes a non-linear drop in R-score for FPS titles.</p>
+</div>
+</li>
+<li class="group flex gap-4 p-5 rounded-lg bg-surface-container hover:bg-surface-container-highest transition-all duration-300 border border-transparent hover:border-outline-variant/10">
+<span class="text-2xl font-black text-outline-variant/20 group-hover:text-primary/40 transition-colors">02</span>
+<div>
+<p class="font-bold text-sm mb-1 text-on-surface">SDN Efficiency</p>
+<p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Anomaly detection at the controller level reduced reroute time by 140ms.</p>
+</div>
+</li>
+<li class="group flex gap-4 p-5 rounded-lg bg-surface-container hover:bg-surface-container-highest transition-all duration-300 border border-transparent hover:border-outline-variant/10">
+<span class="text-2xl font-black text-outline-variant/20 group-hover:text-primary/40 transition-colors">03</span>
+<div>
+<p class="font-bold text-sm mb-1 text-on-surface">MOS Stabilization</p>
+<p class="text-xs text-on-surface-variant leading-relaxed opacity-80">Mean Opinion Score remained above 3.8 during simulated burst traffic.</p>
+</div>
+</li>
+</ul>
+</div>
+<!-- Related Citations -->
+<div class="p-8 bg-surface-container-low rounded-xl shadow-2xl border border-outline-variant/10 transition-all hover:border-secondary/20 duration-500">
+<h4 class="text-step-xs text-secondary mb-8">Related Citations</h4>
+<div class="space-y-4">
+<div class="group cursor-pointer p-4 rounded-lg bg-surface-container hover:bg-surface-container-highest transition-all border border-transparent hover:border-outline-variant/10">
+<p class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">ITU-T Recommendation G.107 (2022)</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1 font-medium">Standard for the E-model</p>
+</div>
+<div class="group cursor-pointer p-4 rounded-lg bg-surface-container hover:bg-surface-container-highest transition-all border border-transparent hover:border-outline-variant/10">
+<p class="text-sm font-bold text-on-surface group-hover:text-primary transition-colors">SDN Performance Metrics</p>
+<p class="text-[10px] text-on-surface-variant uppercase tracking-widest mt-1 font-medium">IEEE Xplore, 2021</p>
+</div>
+</div>
+<button class="w-full mt-8 py-4 rounded-full bg-surface-container-highest text-[10px] font-bold uppercase tracking-[0.2em] hover:bg-primary hover:text-on-primary transition-all duration-500 shadow-lg flex items-center justify-center gap-3 group">
+<span class="material-symbols-outlined text-sm group-hover:scale-110 transition-transform" data-icon="download">download</span>
+                            Download Full Paper (PDF)
+                        </button>
+</div>
+<!-- Visual Accents -->
+<div class="rounded-xl overflow-hidden h-48 relative shadow-2xl group border border-outline-variant/10">
+<img class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000" data-alt="Rows of server racks in a dark data center with glowing orange and blue status indicator lights" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDytIt0377z6z2ltQKyzBiuwwECQScClltJulYNsaO7yKk0FeaQda4LJilWpZuaQ_9943Xn8YOeaLQ5yRqyASpyfPjyIqiPrmdOBEGxfTTvELYt9HDgUsB6GXoyk-RWNduiDlq0IYS5eCEnnori-aJsnHl2lZMTkaa7NA9Pa2D2f8Lt-y8dgN8ewECGB2f_8UgV8L5HOMCP3Rr_s7YWgcRbPOfzl_S0gujtX_dblESOC59xU5j8N5rtEaPrRrNOWZB3A2B4-dyuVrw"/>
+<div class="absolute inset-0 bg-primary/20 mix-blend-multiply"></div>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="px-5 py-2 bg-surface/80 backdrop-blur-md rounded-full border border-primary/20">
+<p class="text-step-xs">Network Visualization</p>
+</div>
+</div>
+</div>
+</div>
+</aside>
+</div>
+<!-- Footer Quote Area -->
+<section class="mt-32 pt-16 border-t border-outline-variant/10 text-center max-w-3xl mx-auto">
+<span class="material-symbols-outlined text-4xl text-primary/30 mb-8" data-icon="format_quote" data-weight="fill" style="font-variation-settings: 'FILL' 1;">format_quote</span>
+<p class="text-3xl italic font-light text-on-surface-variant leading-relaxed mb-10">
+                "The future of gaming isn't just in the graphics, but in the intelligence of the network that carries every bullet and every breath."
+            </p>
+<div class="flex items-center justify-center gap-6">
+<div class="w-12 h-px bg-primary/30"></div>
+<p class="text-[10px] font-bold uppercase tracking-[0.4em] text-on-surface opacity-60">Conclusion Segment</p>
+<div class="w-12 h-px bg-primary/30"></div>
+</div>
+</section>
+</div>
+</main>
+<!-- Decorative Background Elements -->
+<div class="fixed inset-0 pointer-events-none -z-10 overflow-hidden">
+<div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[150px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary/5 blur-[150px] rounded-full"></div>
+</div>
+</body></html>
