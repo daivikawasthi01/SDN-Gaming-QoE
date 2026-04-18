@@ -3,8 +3,7 @@
 A research platform for evaluating **Software-Defined Networking (SDN) controllers** in detecting and mitigating adversarial network conditions that impact online gaming **Quality of Experience (QoE)**.
 
 This project implements a gaming-adapted **ITU-T G.107 E-model** to measure QoE using **MOS (Mean Opinion Score)** based on network metrics including RTT, jitter, and packet loss — extending the Adaptive QoS framework of Shah et al. into adversarial conditions.
-
-> **Research Paper**: [*Quality of Experience Evaluation of SDN-Based Anomaly Detection on Real-Time Gaming Traffic* — Daivik Awasthi & Manik Gaur, Department of Information Technology, Netaji Subhas University of Technology, New Delhi, India.*]([url](https://github.com/daivikawasthi01/SDN-Gaming-QoE/blob/main/2023UIT3079%2C62.pdf))
+> **Research Paper**: [*Quality of Experience Evaluation of SDN-Based Anomaly Detection on Real-Time Gaming Traffic*](https://github.com/daivikawasthi01/SDN-Gaming-QoE/blob/main/2023UIT3079%2C62.pdf) — Daivik Awasthi & Manik Gaur, Netaji Subhas University of Technology, New Delhi, India.
 
 ---
 
