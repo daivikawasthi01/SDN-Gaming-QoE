@@ -1,4 +1,4 @@
-__pycache__/
-*.pyc
 *.bak
 app.log
+__pycache__/
+*.pyc
