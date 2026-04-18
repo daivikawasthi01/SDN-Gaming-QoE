@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Scenario Matrix | SDN Gaming QoE</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                "on-tertiary-fixed-variant": "#004e5b",
+                "secondary": "#ffb95f",
+                "on-surface-variant": "#d8c3b4",
+                "background": "#151311",
+                "surface-container-lowest": "#100e0c",
+                "surface": "#151311",
+                "tertiary": "#74d4ea",
+                "on-primary": "#532200",
+                "on-secondary": "#472a00",
+                "on-tertiary-fixed": "#001f26",
+                "on-primary-container": "#491d00",
+                "primary": "#ffb68d",
+                "surface-container": "#211f1d",
+                "surface-variant": "#373432",
+                "on-error": "#690005",
+                "on-tertiary-container": "#002f37",
+                "surface-container-high": "#2c2927",
+                "primary-container": "#c97f53",
+                "inverse-on-surface": "#33302d",
+                "inverse-surface": "#e8e1dd",
+                "surface-container-highest": "#373432",
+                "tertiary-container": "#359db2",
+                "tertiary-fixed": "#a8edff",
+                "inverse-primary": "#8d4e26",
+                "on-background": "#e8e1dd",
+                "secondary-container": "#ee9800",
+                "surface-container-low": "#1d1b19",
+                "on-secondary-fixed-variant": "#653e00",
+                "error": "#ffb4ab",
+                "error-container": "#93000a",
+                "surface-tint": "#ffb68d",
+                "outline": "#a08d80",
+                "on-primary-fixed": "#331200",
+                "outline-variant": "#524439",
+                "secondary-fixed-dim": "#ffb95f",
+                "primary-fixed-dim": "#ffb68d",
+                "on-secondary-fixed": "#2a1700",
+                "secondary-fixed": "#ffddb8",
+                "on-primary-fixed-variant": "#703711",
+                "on-secondary-container": "#5b3800",
+                "surface-bright": "#3c3936",
+                "on-error-container": "#ffdad6",
+                "on-surface": "#e8e1dd",
+                "tertiary-fixed-dim": "#74d4ea",
+                "surface-dim": "#151311",
+                "on-tertiary": "#00363f",
+                "primary-fixed": "#ffdbc9"
+            },
+            "borderRadius": {
+                "DEFAULT": "1rem",
+                "lg": "2rem",
+                "xl": "3rem",
+                "full": "9999px"
+            },
+            "fontFamily": {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Plus Jakarta Sans"],
+                "label": ["Plus Jakarta Sans"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      body {
+        font-family: 'Plus Jakarta Sans', sans-serif;
+        background-color: #151311;
+        color: #e8e1dd;
+      }
+      .card-glow {
+        background: linear-gradient(135deg, rgba(255, 182, 141, 0.05) 0%, rgba(21, 19, 17, 0) 100%);
+        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      }
+    </style>
+</head>
+<body class="bg-background text-on-surface selection:bg-primary/30">
+<!-- SideNavBar -->
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col p-8 z-40 bg-[#1d1b19]/40 backdrop-blur-3xl rounded-r-[3rem] my-8 shadow-2xl shadow-black/50 hidden lg:flex">
+<div class="mb-12">
+<a href="/" class="block hover:opacity-80 transition-opacity">
+<p class="text-[10px] uppercase tracking-[0.05em] text-on-surface-variant font-['Plus_Jakarta_Sans']">System Node</p>
+<h2 class="text-primary font-bold text-lg">Nocturnal Curator</h2>
+</a>
+<p class="text-[10px] uppercase tracking-[0.05em] text-on-surface-variant font-['Plus_Jakarta_Sans']">Network Intelligence</p>
+</div>
+<nav class="flex-1 flex flex-col gap-6 font-['Plus_Jakarta_Sans'] uppercase tracking-[0.05em] text-[10px]">
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-all duration-300 group" href="/research">
+<span class="material-symbols-outlined" data-icon="science">science</span>
+<span>Research Hub</span>
+</a>
+<a class="flex items-center gap-4 text-primary border-r-4 border-primary pr-4 transition-all duration-500 ease-in-out" href="/matrix">
+<span class="material-symbols-outlined" data-icon="grid_view">grid_view</span>
+<span>Scenario Matrix</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-all duration-300 group" href="/logs">
+<span class="material-symbols-outlined" data-icon="terminal">terminal</span>
+<span>Live Logs</span>
+</a>
+</nav>
+<div class="mt-auto space-y-8">
+<div class="p-5 bg-surface-container-low/30 backdrop-blur-xl rounded-2xl border border-outline-variant/5">
+<p class="text-[8px] uppercase tracking-[0.2em] text-on-surface-variant/60 mb-3">System Health</p>
+<div class="flex items-center justify-between mb-2">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse shadow-[0_0_8px_rgba(255,182,141,0.8)]"></span>
+<span class="text-[10px] text-on-surface/80">Uptime: 99.9%</span>
+</div>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-tertiary shadow-[0_0_8px_rgba(116,212,234,0.8)]"></span>
+<span class="text-[10px] text-on-surface/80">Nodes: 14 Active</span>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-4 font-['Plus_Jakarta_Sans'] uppercase tracking-[0.05em] text-[10px]">
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span>Settings</span>
+</a>
+<a class="flex items-center gap-4 text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="menu_book">menu_book</span>
+<span>Documentation</span>
+</a>
+</div>
+</div>
+</aside>
+<!-- Main Canvas -->
+<main class="lg:ml-64 min-h-screen px-12 py-8">
+<!-- Top Bar -->
+<header class="flex justify-between items-center mb-12">
+<div class="flex flex-col">
+<h2 class="text-sm font-bold text-on-surface uppercase tracking-[0.2em]">Scenario Management Matrix</h2>
+<div class="h-0.5 w-12 bg-primary mt-1 rounded-full"></div>
+</div>
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-6 text-on-surface-variant">
+<span class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors" data-icon="schedule">schedule</span>
+<span class="material-symbols-outlined hover:text-primary cursor-pointer transition-colors" data-icon="notifications">notifications</span>
+</div>
+<div class="w-10 h-10 rounded-full overflow-hidden border border-outline-variant/30">
+<img alt="Admin" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKjXDQngSv5vBcej0koypjIH_3-3uC6ayiufaLWC5tEegDTs74fp-24fcVbT6hgyNHBBZ2Jdk4ayK7ZWJLR6cfElmAhoc5SJvOJN1la7LqZROX6uUV-ufY88TMXZWsy0E6kqmgQx3HO4lp6504CLGt12zkwQ0T2A3qabmXK6kWCTt-UWPUftYDWptmHsH8EUSQaQAs053UcY3LnYFimbIMM7zVLZZ5xaDEXk8h_BdInZfosbFBM302UU_xam-evLAmxo1MaG_u8eo"/>
+</div>
+</div>
+</header>
+<section>
+<!-- HUD Stats -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-12">
+<div class="p-8 rounded-[2rem] bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/10 card-glow">
+<p class="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-4">Total Scenarios</p>
+<h3 class="text-6xl font-extrabold text-primary tracking-tighter" id="mx-total">06</h3>
+</div>
+<div class="p-8 rounded-[2rem] bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/10 card-glow">
+<p class="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-4">Avg. Latency Delta</p>
+<div class="flex items-baseline gap-1">
+<h3 class="text-6xl font-extrabold text-secondary tracking-tighter" id="mx-avg-delta">+14</h3>
+<span class="text-2xl font-bold text-secondary/60">ms</span>
+</div>
+</div>
+<div class="p-8 rounded-[2rem] bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/10 card-glow">
+<p class="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-4">Nodes Under Stress</p>
+<h3 class="text-6xl font-extrabold text-tertiary tracking-tighter" id="mx-stress">04</h3>
+</div>
+<div class="p-8 rounded-[2rem] bg-surface-container-low/40 backdrop-blur-xl border border-outline-variant/10 card-glow">
+<p class="text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant mb-4">Active Protocol</p>
+<h3 class="text-4xl font-extrabold text-on-surface tracking-tighter mt-4 uppercase">OpenFlow</h3>
+</div>
+</div>
+<!-- Scenario Matrix Table -->
+<div class="bg-surface-container-low/20 backdrop-blur-2xl rounded-[2.5rem] border border-outline-variant/10 overflow-hidden shadow-2xl mb-12">
+<table class="w-full text-left">
+<thead>
+<tr class="border-b border-outline-variant/10">
+<th class="px-10 py-8 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Scenario Title</th>
+<th class="px-8 py-8 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Attack Type</th>
+<th class="px-8 py-8 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant">Live Result</th>
+<th class="px-8 py-8 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant text-center">Delta vs Paper</th>
+<th class="px-10 py-8 text-[10px] font-bold uppercase tracking-[0.2em] text-on-surface-variant text-right">Actions</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-outline-variant/5" id="scenario-matrix-container">
+<!-- Row 1 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-tertiary shadow-[0_0_15px_rgba(116,212,234,0.6)]"></div>
+<span class="font-bold text-on-surface">Baseline</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">N/A (Control)</td>
+<td class="px-8 py-6">
+<span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-tertiary/30 bg-tertiary/5 text-tertiary">Optimal</span>
+</td>
+<td class="px-8 py-6 text-center font-mono text-sm text-tertiary/80">±0.0ms</td>
+<td class="px-10 py-6 text-right">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+</td>
+</tr>
+<!-- Row 2 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_15px_rgba(255,185,95,0.6)]"></div>
+<span class="font-bold text-on-surface">SDN Overhead</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Control Plane Lag</td>
+<td class="px-8 py-6">
+<span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-secondary/30 bg-secondary/5 text-secondary">Stable</span>
+</td>
+<td class="px-8 py-6 text-center font-mono text-sm text-secondary font-bold">+2.4ms</td>
+<td class="px-10 py-6 text-right">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+</td>
+</tr>
+<!-- Row 3 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-primary shadow-[0_0_15px_rgba(255,182,141,0.6)]"></div>
+<span class="font-bold text-on-surface">50Mbps Flood</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">ICMP Volumetric</td>
+<td class="px-8 py-6">
+<span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-primary/30 bg-primary/5 text-primary">Degraded</span>
+</td>
+<td class="px-8 py-6 text-center font-mono text-sm text-primary font-bold">+12.8ms</td>
+<td class="px-10 py-6 text-right">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+</td>
+</tr>
+<!-- Row 4 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-error shadow-[0_0_15px_rgba(255,180,171,0.6)]"></div>
+<span class="font-bold text-on-surface">500Mbps Flood</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">UDP Volumetric</td>
+<td class="px-8 py-6">
+<span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-error/30 bg-error/5 text-error">Critical</span>
+</td>
+<td class="px-8 py-6 text-center font-mono text-sm text-error font-bold">+84.2ms</td>
+<td class="px-10 py-6 text-right">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+</td>
+</tr>
+<!-- Row 5 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-error shadow-[0_0_15px_rgba(255,180,171,0.6)]"></div>
+<span class="font-bold text-on-surface">Flow Exhaustion</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Table Entry Attack</td>
+<td class="px-8 py-6">
+<span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-error/30 bg-error/5 text-error">Stalled</span>
+</td>
+<td class="px-8 py-6 text-center font-mono text-sm text-error font-bold">+142.1ms</td>
+<td class="px-10 py-6 text-right">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+</td>
+</tr>
+<!-- Row 6 -->
+<tr class="hover:bg-primary/5 transition-colors group">
+<td class="px-10 py-6">
+<div class="flex items-center gap-4">
+<div class="w-2 h-2 rounded-full bg-secondary shadow-[0_0_15px_rgba(255,185,95,0.6)]"></div>
+<span class="font-bold text-on-surface">ARP Spoofing</span>
+</div>
+</td>
+<td class="px-8 py-6 text-on-surface-variant text-sm">Man-in-the-Middle</td>
+<td class="px-8 py-6">
+<span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-secondary/30 bg-secondary/5 text-secondary">Compromised</span>
+</td>
+<td class="px-8 py-6 text-center font-mono text-sm text-secondary font-bold">+15.4ms</td>
+<td class="px-10 py-6 text-right">
+<button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- Lower Analytics Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+<div class="lg:col-span-2 bg-surface-container-low/30 backdrop-blur-xl rounded-[2.5rem] border border-outline-variant/10 overflow-hidden group card-glow">
+<div class="relative h-72 w-full">
+<img alt="Performance Jitter" class="w-full h-full object-cover opacity-30 group-hover:scale-105 transition-transform duration-[2000ms]" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbeiPmimntoGXh0B_PQw1aZK9T6K60lj1cwvikGSWqx0ytNZaglVHmix1KBhPeGBqiiRKnWKb8HcwRYzQhbR94d8__pb8L-orK31QHMVGaUna3qIL0qpRTlKWXyq7_fe9Gj-OTMnwJKQR9rW4zKcoWWLXGxZSQumjf8COyX3-dlZq27x-dd4GTy4QjRuBdEvwbw4VOFdIoDVFEebggiUd2o_sPZFaoCpLITybMMzz-Dy12s7FVUFcSj7VZkbDAAhhRpOzt3w486R8"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+<div class="absolute bottom-10 left-10">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-primary mb-2">Live Jitter Analysis</p>
+<h4 class="text-4xl font-extrabold tracking-tighter">Flux Coefficient: 0.84</h4>
+</div>
+</div>
+</div>
+<div class="p-10 rounded-[2.5rem] bg-surface-container-low/40 backdrop-blur-xl border border-primary/20 flex flex-col justify-between relative overflow-hidden group card-glow">
+<div class="absolute -right-12 -top-12 w-48 h-48 bg-primary/10 blur-3xl rounded-full"></div>
+<div class="relative z-10">
+<div class="flex justify-between items-start mb-8">
+<span class="material-symbols-outlined text-4xl text-primary" data-icon="auto_awesome">auto_awesome</span>
+<div class="text-right">
+<p class="text-[8px] font-bold uppercase tracking-widest text-on-surface-variant/70 mb-1">Last Pulse: 12ms ago</p>
+<p class="text-3xl font-black text-primary tracking-tighter">94.2% <span class="text-[10px] text-on-surface-variant align-middle uppercase">QoE</span></p>
+</div>
+</div>
+<h4 class="text-xl font-bold mb-4 leading-tight">AI Insights: ARP Mitigation Suggested</h4>
+<p class="text-on-surface-variant/80 text-sm leading-relaxed mb-8">The system has detected persistent ARP anomalies in Scenario 6. Recommend enabling Dynamic ARP Inspection (DAI) on switch ports A-04 through A-09.</p>
+</div>
+<button class="w-full py-4 px-8 rounded-full bg-primary text-on-primary text-[10px] font-black uppercase tracking-[0.2em] hover:scale-105 transition-all duration-300 shadow-[0_15px_30px_rgba(255,182,141,0.2)]">
+                    Optimize Controller
+                </button>
+</div>
+</div>
+</section>
+<!-- Decorative Bottom Gradient -->
+<div class="fixed inset-0 pointer-events-none -z-10">
+<div class="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-primary/5 blur-[150px] rounded-full"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-secondary/5 blur-[150px] rounded-full"></div>
+</div>
+</main>
+<script>
+    const API_BASE = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' ? '/api' : 'http://192.168.64.3:5000/api';
+
+    const rowTemplate = `
+    <tr class="hover:bg-primary/5 transition-colors group">
+        <td class="px-10 py-6">
+            <div class="flex items-center gap-4">
+                <div class="w-2 h-2 rounded-full \${COLOR} shadow-[0_0_15px_currentColor]"></div>
+                <span class="font-bold text-on-surface">\${TITLE}</span>
+            </div>
+        </td>
+        <td class="px-8 py-6 text-on-surface-variant text-sm">\${ATTACK}</td>
+        <td class="px-8 py-6">
+            <span class="px-4 py-1.5 rounded-full text-[9px] font-black uppercase tracking-widest border border-current/30 bg-current/5 \${VAL_COLOR}">\${STATUS_TEXT}</span>
+        </td>
+        <td class="px-8 py-6 text-center font-mono text-sm \${VAL_COLOR} font-bold">\${DELTA}ms</td>
+        <td class="px-10 py-6 text-right">
+            <button class="px-6 py-2 rounded-full bg-surface-container-highest/30 backdrop-blur-md text-[10px] font-bold uppercase tracking-widest text-primary hover:bg-primary hover:text-on-primary transition-all duration-300">View Details</button>
+        </td>
+    </tr>`;
+
+    async function tick() {
+        try {
+            const [resResults, resStatus] = await Promise.all([
+                fetch(API_BASE + '/results').then(r => r.json()),
+                fetch(API_BASE + '/status').then(r => r.json())
+            ]);
+
+            const matrixList = document.getElementById('scenario-matrix-container');
+            let listHtml = '';
+            
+            let underStress = 0;
+            let sumDelta = 0;
+            let countDelta = 0;
+            
+            resResults.forEach((r, idx) => {
+                let color = 'bg-tertiary';
+                let valColor = 'text-tertiary';
+                let statusText = 'OPTIMAL';
+                
+                let attackText = r.attack ? r.attack : 'Control Plane Lag';
+                if (idx === 0) attackText = 'N/A (Control)';
+
+                let delta = 0;
+                let deltaStr = '±0.0';
+                
+                if (r.has_data) {
+                    if (r.data.mos < 3.6) {
+                        underStress++;
+                        color = 'bg-error';
+                        valColor = 'text-error';
+                        statusText = 'CRITICAL';
+                    } else if (r.data.mos < 3.9) {
+                        color = 'bg-secondary';
+                        valColor = 'text-secondary';
+                        statusText = 'DEGRADED';
+                    }
+                    delta = (r.data.avg_rtt - 32.0).toFixed(1); // Assuming 32ms baseline
+                    deltaStr = delta > 0 ? '+' + delta : delta;
+                    sumDelta += parseFloat(delta);
+                    countDelta++;
+                }
+
+                listHtml += rowTemplate
+                    .replace('${TITLE}', r.title)
+                    .replace('${ATTACK}', attackText)
+                    .replace('${STATUS_TEXT}', statusText)
+                    .replace('${DELTA}', deltaStr)
+                    .replace('${COLOR}', color)
+                    .replace(/(\$\{VAL_COLOR\})/g, valColor);
+            });
+            
+            matrixList.innerHTML = listHtml;
+            
+            document.getElementById('mx-total').innerText = resResults.length.toString().padStart(2, '0');
+            document.getElementById('mx-stress').innerText = underStress.toString().padStart(2, '0');
+            
+            if (countDelta > 0) {
+                let avg = (sumDelta / countDelta).toFixed(1);
+                document.getElementById('mx-avg-delta').innerText = avg > 0 ? '+' + avg : avg;
+            }
+
+        } catch (err) {
+            console.error('Failed to fetch', err);
+        }
+    }
+
+    setInterval(tick, 2000);
+    tick();
+</script>
+</body></html>
